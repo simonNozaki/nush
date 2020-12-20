@@ -1,0 +1,22 @@
+.payment-form-container {
+    margin-top: 100px !important;
+}
+
+.payment-form-container h1 {
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+
+#payment-form-spinner {
+    margin: 20px;
+}
+
+#card-element {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.other-actions-container {
+    margin-top: 100px !important;
+}
