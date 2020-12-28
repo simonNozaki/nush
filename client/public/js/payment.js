@@ -1,7 +1,7 @@
 // ---------------------------
 // 1. elementsインスタンスを用意する
 // ---------------------------
-var stripe = Stripe("pk_test_xxx");
+var stripe = Stripe("pk_test_51HY4LDIyqWtt9vDnFYFURjLaFiRigfVkXZvjFppEm9o7AxJISd5CwTfs9xomJQy3GrnCvlO38IKEoBvQUOlt23om00n5KNIohe");
 var elements = stripe.elements();
 
 // 注文情報
@@ -91,10 +91,12 @@ submitButton.addEventListener("click", function(event) {
 // ボタンの要素を取得
 let returnButtonNormal = document.getElementById("return-button-normal");
 let returnButtonError = document.getElementById("return-button-error");
+let returnButtonNotYet = document.getElementById("return-button-not-yet");
 let returnButtonDefault = document.getElementById("return-button-default");
 
 returnButtonNormal.addEventListener("click", reset);
 returnButtonError.addEventListener("click", reset);
+returnButtonNotYet.addEventListener("click", reset);
 returnButtonDefault.addEventListener("click", reset);
 
 /**
@@ -104,6 +106,7 @@ returnButtonDefault.addEventListener("click", reset);
 function reset(event) {
     hideError();
     hideMessage();
+    hideNotYetMessage();
     displayButton();
 
     card.mount("#card-element");
@@ -123,6 +126,8 @@ function onComplete(response){
         onError();
     } else if (response.paymentIntentStatus === "succeeded") {
         displayMessage();
+    } else {
+        displayNotYetMessage();
     }
 }
 
@@ -171,6 +176,14 @@ function displayMessage() {
 
 function hideMessage() {
     document.querySelector(".contents-payment-result").classList.add("collapse");
+}
+
+function displayNotYetMessage() {
+    document.querySelector(".contents-payment-not-yet").classList.remove("collapse");
+}
+
+function hideNotYetMessage() {
+    document.querySelector(".contents-payment-not-yet").classList.add("collapse");
 }
 
 function hideButton() {
